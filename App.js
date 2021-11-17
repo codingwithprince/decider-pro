@@ -12,7 +12,7 @@ export default function App() {
   const [input, setInput] = React.useState('');
   
 
-const p = ['prince', 'asdf']
+const participants = ['prince', 'asdf']
 
   const buttonPress = () => {
     setStarted(true);
@@ -55,7 +55,7 @@ const p = ['prince', 'asdf']
  <WheelOfFortune
             options={
               {
-                rewards: p,
+                rewards: participants,
                 knobSize: 30,
                 borderWidth: 5,
                 borderColor: '#fff',
