@@ -22,7 +22,7 @@ const participants = route.params.name;
     borderWidth: 5,
     borderColor: '#fff',
     innerRadius: 30,
-    duration: 5000,
+    duration: 6000,
     backgroundColor: 'transparent',
     textAngle: 'horizontal',
     knobSource: require('../knob.png'),
@@ -31,13 +31,13 @@ const participants = route.params.name;
 
   return (
     <View style={styles.container}>
- <WheelOfFortune
+      <WheelOfFortune
             options={wheelOptions}
             getWinner={(value, index) => {
             setWinnerValue(value);
             setWinnerIndex(index)
           }}
-      />
+        />
       {/* <WheelOfFortune
             options={
               {
