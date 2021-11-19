@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, Text, View, TouchableOpacity, TextInput, FlatList, Alert, ScrollView, ToastAndroid } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, View, TouchableOpacity, TextInput, Image, Alert, ScrollView, ToastAndroid } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const Home = ({navigation}) => {
@@ -15,6 +15,7 @@ const Home = ({navigation}) => {
             setParticipants([...participants,input])
             setInput('')
           } else{
+            setInput('')
             ToastAndroid.show("Already Exist", ToastAndroid.SHORT)
           }
           
@@ -40,7 +41,7 @@ const Home = ({navigation}) => {
     const List = ({data}) => {
       return(
         <View style={styles.listStyle}>
-          <Text style={{ textTransform:'capitalize',fontSize:15, paddingVertical:10, backgroundColor:'#f3f3f3'}}>{data}</Text>
+          <Text style={{ textTransform:'capitalize',fontSize:15, paddingVertical:10, backgroundColor:'#E3E3E3'}}>{data}</Text>
           <TouchableOpacity onPress={()=> deleteItem(data)}>
             <Icon name="cancel" size={25} color="#ff3939" />
           </TouchableOpacity>
@@ -60,18 +61,33 @@ const Home = ({navigation}) => {
               </TouchableOpacity>
             </View>
 
-            {/* === FlatList === */}
-            <ScrollView 
-            showsVerticalScrollIndicator={false}
-            style={styles.flatListContainer}> 
-              {
-                participants.map(d=> <List data={d} key={d} />)
-              }
-              
-            </ScrollView>
+             {/* === blank Page === */}
+              <View style={styles.blankPage}>
+                  {
+                      participants == '' &&  <View style={styles.emptyContainer}> 
+                          <Image style={styles.addItemLogo} source={require('../assets/box.png')} />
+                          <Text style={{fontSize: 20, color: '#777', marginVertical:10}}>No Items</Text>
+                          <Text  style={{fontSize: 12, color: '#888', marginVertical:10, position:'absolute', bottom:10}}>Made By Prince</Text>
+                      </View>
+                    }
+                </View>
 
+            {/* === FlatList === */}
+            {
+              participants != '' && 
+              <ScrollView 
+              showsVerticalScrollIndicator={false}
+              style={styles.flatListContainer}> 
+                {
+                  participants.map(d=> <List data={d} key={d} />)
+                }
+            </ScrollView>
+            }
+            
+
+           
             {/* === home footer === */}
-            { participants != '' && 
+            { participants.length >= 2 && 
                                     <View style={styles.homeFooter}>
                                     <TouchableOpacity style={styles.clearBtn} onPress={()=> clearArray()}>
                                       <Icon style={{color:'#fff'}} name='delete' size={20} />
@@ -93,7 +109,7 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       alignItems: 'center',
-      backgroundColor:'#f3f3f3'
+      backgroundColor:'#E3E3E3'
     },
     textInputContainer:{
       flex:1,
@@ -109,9 +125,10 @@ const styles = StyleSheet.create({
       width:40,
       justifyContent:'center',
       alignItems:'center',
-      backgroundColor:'#555',
+      backgroundColor:'#00C36C',
       borderRadius:25,
-      marginLeft:10
+      marginLeft:10,
+      elevation:10
     },
     flatListContainer:{
       width:'100%',
@@ -153,6 +170,21 @@ const styles = StyleSheet.create({
       padding:7,
       paddingHorizontal:15,
       borderRadius:5
+    },
+    emptyContainer:{
+      flex:1,
+      alignItems:'center',
+      justifyContent:'center',
+      marginBottom:100
+    },
+    addItemLogo:{
+      height:100,
+      width:100,
+      opacity:0.5
+    },
+    blankPage:{
+      alignItems:'center',
+      justifyContent:'center'
     }
   });
 export default Home;
