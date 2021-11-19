@@ -10,11 +10,20 @@ export default function Spinner({navigation,route}) {
   
 const participants = route.params.name;
 
+
   const buttonPress = () => {
     setStarted(true);
     child._onPress();
   };
 
+  // removing winner
+  const removeWinner = () =>{
+      for(let i=0; i < participants.length; i++ ){
+        if(participants[i] === participants[winnerIndex]){
+           participants.splice(i,1)
+        }
+      }
+  }
 
   const wheelOptions = {
     rewards: participants,
@@ -76,14 +85,30 @@ const participants = route.params.name;
             <Text style={styles.winnerText}>
               You win {participants[winnerIndex]}
             </Text>
+
+            {/* === checking if there is only two participant left === */}
+            {
+              participants.length == 2 ? null
+            :
             <TouchableOpacity
               onPress={() => {
+                removeWinner()
                 setWinnerIndex(null)
                 child._tryAgain();
               }}
               style={styles.tryAgainButton}>
               <Text style={styles.tryAgainText}>TRY AGAIN</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> 
+            }
+            {/* <TouchableOpacity
+              onPress={() => {
+                removeWinner()
+                setWinnerIndex(null)
+                child._tryAgain();
+              }}
+              style={styles.tryAgainButton}>
+              <Text style={styles.tryAgainText}>TRY AGAIN</Text>
+            </TouchableOpacity> */}
           </View>
         )}
 
