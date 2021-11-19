@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, Text, View, TouchableOpacity, TextInput, FlatList, Alert, ScrollView } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, View, TouchableOpacity, TextInput, FlatList, Alert, ScrollView, ToastAndroid } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const Home = ({navigation}) => {
@@ -9,13 +9,25 @@ const Home = ({navigation}) => {
     const addTextToParticipantsList = () =>{
         if(input == ''){
           Alert.alert('Wrong input', `No input was found. Please type something`)
-        }else{
-          setInput('')
-          setParticipants([...participants,input])
         }
-        
+        else{
+          if(!participants.includes(input)){
+            setParticipants([...participants,input])
+            setInput('')
+          } else{
+            ToastAndroid.show("Already Exist", ToastAndroid.SHORT)
+          }
+          
+        }
       }
-    
+
+    // deleting item form list
+    const deleteItem = (itemId) =>{
+      const newLists = participants.filter( item => item != itemId);
+      setParticipants(newLists)
+    }
+
+    // clear all array
     const clearArray = () => {
       Alert.alert('Confirm', 'Are you sure you want to clear all?', [
         {text: 'No'},
@@ -29,7 +41,7 @@ const Home = ({navigation}) => {
       return(
         <View style={styles.listStyle}>
           <Text style={{ textTransform:'capitalize',fontSize:15, paddingVertical:10, backgroundColor:'#f3f3f3'}}>{data}</Text>
-          <TouchableOpacity onPress={()=> clearArray()}>
+          <TouchableOpacity onPress={()=> deleteItem(data)}>
             <Icon name="cancel" size={25} color="#ff3939" />
           </TouchableOpacity>
          
