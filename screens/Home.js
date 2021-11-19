@@ -8,7 +8,7 @@ const Home = ({navigation}) => {
 
     const addTextToParticipantsList = () =>{
         if(input == ''){
-          Alert.alert('Wrong input', `No input was found. Please type something`)
+          ToastAndroid.show('Type something...', ToastAndroid.LONG)
         }
         else{
           if(!participants.includes(input)){
@@ -88,17 +88,17 @@ const Home = ({navigation}) => {
            
             {/* === home footer === */}
             { participants.length >= 2 && 
-                                    <View style={styles.homeFooter}>
-                                    <TouchableOpacity style={styles.clearBtn} onPress={()=> clearArray()}>
-                                      <Icon style={{color:'#fff'}} name='delete' size={20} />
-                                        <Text style={{color:'#fff', paddingRight:5}}>Clear</Text>
-                                    </TouchableOpacity>
-                                    <TouchableOpacity style={styles.nextBtn} onPress={()=> navigation.navigate('Spinner', {name: participants}) }>
-                                        <Text style={{color:'#fff', paddingRight:5}}>Next</Text>
-                                        <Icon style={{color:'#fff'}} name='done' size={20} />
-                                    </TouchableOpacity>
-                                    {/* <Button title="Next" onPress={()=> navigation.navigate('Spinner', {name: participants}) } /> */}
-                                    </View>
+              <View style={styles.homeFooter}>
+              <TouchableOpacity style={styles.clearBtn} onPress={()=> clearArray()}>
+                <Icon style={{color:'#fff'}} name='delete' size={20} />
+                  <Text style={{color:'#fff', paddingLeft:5}}>Clear</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.nextBtn} onPress={()=> navigation.navigate('Spinner', {name: participants}) }>
+                  <Text style={{color:'#fff', paddingRight:5}}>Next</Text>
+                  <Icon style={{color:'#fff'}} name='arrow-forward' size={20} />
+              </TouchableOpacity>
+              {/* <Button title="Next" onPress={()=> navigation.navigate('Spinner', {name: participants}) } /> */}
+              </View>
             }
             
         </SafeAreaView>
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
     },
     homeFooter:{
       position:'absolute',
-      bottom:30,
+      bottom:40,
       flexDirection:'row',
       justifyContent:'space-around',
       alignItems:"center",
