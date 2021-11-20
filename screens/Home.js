@@ -2,13 +2,14 @@ import React from 'react';
 import { SafeAreaView, StyleSheet, Text, View, TouchableOpacity, TextInput, Image, Alert, ScrollView, ToastAndroid } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+
 const Home = ({navigation}) => {
     const [input, setInput] = React.useState('');
     const [participants, setParticipants] = React.useState([])
 
     const addTextToParticipantsList = () =>{
         if(input == ''){
-          ToastAndroid.show('Type something...', ToastAndroid.LONG)
+          ToastAndroid.show('Type something... ', ToastAndroid.LONG)
         }
         else{
           if(!participants.includes(input)){
@@ -17,8 +18,7 @@ const Home = ({navigation}) => {
           } else{
             setInput('')
             ToastAndroid.show("Already Exist", ToastAndroid.SHORT)
-          }
-          
+          } 
         }
       }
 
@@ -49,6 +49,7 @@ const Home = ({navigation}) => {
         </View>
       )
     }
+
     return (
         <SafeAreaView style={styles.container}>
           {/* === Header === */}
@@ -60,6 +61,7 @@ const Home = ({navigation}) => {
                <Icon style={{color:'#fff'}} name='add' size={20} />
               </TouchableOpacity>
             </View>
+
 
              {/* === blank Page === */}
               <View style={styles.blankPage}>
