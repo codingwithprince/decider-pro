@@ -55,7 +55,7 @@ const Home = ({navigation}) => {
           {/* === Header === */}
             <View style={{flexDirection:'row', justifyContent:'center',alignItems:'center',marginHorizontal:10}}>
               <View style={styles.textInputContainer}>
-                  <TextInput value={input} onChangeText={(t)=> setInput(t)} placeholder="Your Text..." onSubmitEditing={()=>{addTextToParticipantsList()}} />
+                  <TextInput value={input} onChangeText={(t)=> setInput(t)} placeholder="Participants name..." onSubmitEditing={()=>{addTextToParticipantsList()}} />
               </View>
               <TouchableOpacity style={styles.inputButtonContainer} onPress={()=>{addTextToParticipantsList()}}>
                <Icon style={{color:'#fff'}} name='add' size={20} />
@@ -68,7 +68,7 @@ const Home = ({navigation}) => {
                   {
                       participants == '' &&  <View style={styles.emptyContainer}> 
                           <Image style={styles.addItemLogo} source={require('../assets/box.png')} />
-                          <Text style={{fontSize: 20, color: '#777', marginVertical:10}}>No Items</Text>
+                          <Text style={{fontSize: 20, color: '#777', marginVertical:10}}>no participants</Text>
                           <Text  style={{fontSize: 12, color: '#888', marginVertical:10, position:'absolute', bottom:10}}>Made By Prince</Text>
                       </View>
                     }
@@ -86,8 +86,6 @@ const Home = ({navigation}) => {
             </ScrollView>
             }
             
-
-           
             {/* === home footer === */}
             { participants.length >= 2 && 
               <View style={styles.homeFooter}>
@@ -149,7 +147,7 @@ const styles = StyleSheet.create({
     },
     homeFooter:{
       position:'absolute',
-      bottom:40,
+      bottom:10,
       flexDirection:'row',
       justifyContent:'space-around',
       alignItems:"center",
@@ -168,7 +166,7 @@ const styles = StyleSheet.create({
       flexDirection:'row',
       alignItems:"center",
       justifyContent:"center",
-      backgroundColor:'#00a3e9',
+      backgroundColor:'#0086F5',
       padding:7,
       paddingHorizontal:15,
       borderRadius:5

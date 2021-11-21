@@ -53,8 +53,8 @@ export default function Spinner({ navigation, route }) {
       {!started && (
         <View style={styles.startButtonView}>
           <TouchableOpacity style={styles.startButton} onPress={() => buttonPress()}>
-            <Text style={{ color: '#fff', paddingRight: 5 }}>Spin</Text>
-            <Icon style={{ color: '#fff' }} name='arrow-forward' size={20} />
+            <Text style={{ color: '#fff', paddingRight: 5 }}>GET WINNER</Text>
+            <Icon style={{ color: '#fff' }} name='sync' size={20} />
           </TouchableOpacity>
         </View>
       )}
@@ -67,7 +67,7 @@ export default function Spinner({ navigation, route }) {
             <View style={{backgroundColor:'#fff', alignItems:'center', borderRadius:7}}>
               <View style={{ flexDirection: 'row' }}>
                 <Image style={[styles.winnerImg, { marginBottom: 10, paddingBottom: 10 }]} source={require('../assets/cel.gif')} />
-                <Text style={{ fontSize: 15, textTransform: 'uppercase', marginTop: 7 }}>winner</Text>
+                <Text style={{ fontSize: 15, textTransform: 'uppercase', marginTop: 7,color:'#444' }}>winner</Text>
                 <Image style={[styles.winnerImg, { marginBottom: 10, paddingBottom: 10 }]} source={require('../assets/cel.gif')} />
               </View>
               <Text style={styles.winnerText}>{participants[winnerIndex]}</Text>
@@ -90,8 +90,8 @@ export default function Spinner({ navigation, route }) {
                   setWinnerIndex(null)
                   child._tryAgain();
                 }}>
-                <Text style={{ color: '#fff', paddingRight: 5 }}>Spin</Text>
-                <Icon style={{ color: '#fff' }} name='arrow-forward' size={20} />
+                <Text style={{ color: '#fff', paddingRight: 5 }}>GET WINNER</Text>
+                <Icon style={{ color: '#fff' }} name='sync' size={20} />
               </TouchableOpacity>
           }
         </View>
@@ -107,7 +107,8 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#E3E3E3'
+    backgroundColor:'#e3e3e3'
+    // backgroundColor: '#E3E3E3'
   },
   wheelContainer: {
     width: '100%',
@@ -118,13 +119,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    bottom: 40
+    bottom: 10
   },
   startButton: {
     flexDirection: 'row',
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: '#00a3e9',
+    backgroundColor: '#0086F5',
     padding: 7,
     paddingHorizontal: 15,
     borderRadius: 5
@@ -135,7 +136,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   winnerView: {
-    height: 150,
+    height: 180,
     width: '70%',
     flexDirection: 'column',
     justifyContent: 'space-around',
@@ -156,10 +157,11 @@ const styles = StyleSheet.create({
     marginHorizontal: 20
   },
   winnerText: {
-    fontSize: 40,
+    fontSize: 30,
     fontWeight: 'bold',
     textTransform: 'uppercase',
-    marginHorizontal: 20
+    marginHorizontal: 20,
+    color:'#333'
   },
   tryAgainButton: {
     padding: 5,

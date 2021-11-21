@@ -16,9 +16,28 @@ export default function App() {
         <Stack.Screen
           name="Home"
           component={Home}
-          options={{ title: 'Get Winner'}}
+          options={{ title: 'Participants',
+        headerStyle:{
+          // backgroundColor:'#ff3939'
+          backgroundColor:'#E9003E',
+        },
+        headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
         />
-        <Stack.Screen name="Spinner" component={Spinner} />
+        <Stack.Screen name="Spinner" component={Spinner} 
+        options={{ title: 'Get Winner',
+        headerStyle:{
+          backgroundColor:'#E9003E',
+        },
+        headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
