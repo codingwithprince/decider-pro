@@ -1,15 +1,15 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, View, TouchableOpacity, TextInput, Image } from 'react-native';
 import WheelOfFortune from 'react-native-wheel-of-fortune';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-export default function Spinner({navigation,route}) {
+export default function Spinner({ navigation, route }) {
   const [child, setChild] = React.useState(null);
   const [winnerValue, setWinnerValue] = React.useState(null);
   const [winnerIndex, setWinnerIndex] = React.useState(null);
   const [started, setStarted] = React.useState(false);
-  
-const participants = route.params.name;
+
+  const participants = route.params.name;
 
   const buttonPress = () => {
     setStarted(true);
@@ -17,12 +17,12 @@ const participants = route.params.name;
   };
 
   // removing winner
-  const removeWinner = () =>{
-      for(let i=0; i < participants.length; i++ ){
-        if(participants[i] === participants[winnerIndex]){
-           participants.splice(i,1)
-        }
+  const removeWinner = () => {
+    for (let i = 0; i < participants.length; i++) {
+      if (participants[i] === participants[winnerIndex]) {
+        participants.splice(i, 1)
       }
+    }
   }
 
   const wheelOptions = {
@@ -40,88 +40,87 @@ const participants = route.params.name;
 
   return (
     <View style={styles.container}>
-      
-        <WheelOfFortune
-              options={wheelOptions}
-              getWinner={(value, index) => {
-              setWinnerValue(value);
-              setWinnerIndex(index)
-            }}
-          />
-    
-     
+
+      <WheelOfFortune
+        options={wheelOptions}
+        getWinner={(value, index) => {
+          setWinnerValue(value);
+          setWinnerIndex(index)
+        }}
+      />
 
       {/* === Checking Started Or Not === */}
-       {!started && (
-          <View style={styles.startButtonView}>
-            <TouchableOpacity style={styles.startButton} onPress={()=> buttonPress() }>
-                  <Text style={{color:'#fff', paddingRight:5}}>Spin</Text>
-                  <Icon style={{color:'#fff'}} name='arrow-forward' size={20} />
-              </TouchableOpacity>
-          </View>
-        )}
+      {!started && (
+        <View style={styles.startButtonView}>
+          <TouchableOpacity style={styles.startButton} onPress={() => buttonPress()}>
+            <Text style={{ color: '#fff', paddingRight: 5 }}>Spin</Text>
+            <Icon style={{ color: '#fff' }} name='arrow-forward' size={20} />
+          </TouchableOpacity>
+        </View>
+      )}
 
       {/* === showing results === */}
-      {winnerIndex != null && (
+     
+        {winnerIndex != null && (
           <View style={styles.winnerView}>
-            <Text>Winner :  </Text>
-            <Text style={styles.winnerText}>{participants[winnerIndex]} 🏆
-            </Text>
-
-            {/* === checking if there is only two participant left === */}
-            {
-              participants.length == 2 ? null
-            :
-            <TouchableOpacity
-              onPress={() => {
-                removeWinner()
-                setWinnerIndex(null)
-                child._tryAgain();
-              }}
-              style={styles.tryAgainButton}>
-              <Text style={styles.tryAgainText}>TRY AGAIN</Text>
-            </TouchableOpacity> 
-            }
-            {/* <TouchableOpacity
-              onPress={() => {
-                removeWinner()
-                setWinnerIndex(null)
-                child._tryAgain();
-              }}
-              style={styles.tryAgainButton}>
-              <Text style={styles.tryAgainText}>TRY AGAIN</Text>
-            </TouchableOpacity> */}
-          </View>
+            <Image style={[styles.winnerImg, {height:50, marginBottom:10}]} source={require('../assets/cel.gif') } />
+           {/* <Text style={{fontSize:15, textTransform:'uppercase'}}>Results</Text> */}
+            <Text style={styles.winnerText}>{participants[winnerIndex]}</Text>
+            <Image style={styles.winnerImg} source={require('../assets/winner.gif') } />
+        </View>
         )}
+      
+
+      {/* ======== Try Again ========== */}
+      {winnerIndex != null && (
+        <View style={styles.startButtonView}>
+          {/* === checking if there is only two participant left === */}
+          {
+            participants.length == 2 ? null
+              :
+              <TouchableOpacity style={styles.startButton}
+                onPress={() => {
+                  removeWinner()
+                  setWinnerIndex(null)
+                  child._tryAgain();
+                }}>
+                <Text style={{ color: '#fff', paddingRight: 5 }}>Spin</Text>
+                <Icon style={{ color: '#fff' }} name='arrow-forward' size={20} />
+              </TouchableOpacity>
+          }
+        </View>
+      )}
 
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container:{
-    flex:1,
-    flexDirection:'column',
-  },
-  wheelContainer:{
-    width:'100%',
-    position:'absolute',
-    top:200
-  },
-  startButtonView:{
-    flexDirection:'row',
-    justifyContent:'center',
+  container: {
+    flex: 1,
+    flexDirection: 'column',
     alignItems:'center',
-    bottom:40
+    justifyContent:'center'
+  },
+  wheelContainer: {
+    width: '100%',
+    position: 'absolute',
+    top: 200
+  },
+  startButtonView: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    bottom: 40
   },
   startButton: {
-      flexDirection:'row',
-      alignItems:"center",
-      justifyContent:"center",
-      backgroundColor:'#00a3e9',
-      padding:7,
-      paddingHorizontal:15,
-      borderRadius:5
+    flexDirection: 'row',
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: '#00a3e9',
+    padding: 7,
+    paddingHorizontal: 15,
+    borderRadius: 5
   },
   startButtonText: {
     fontSize: 50,
@@ -129,21 +128,28 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   winnerView: {
-    width:'100%',
+    height:70,
+    flexDirection:'row',
     position: 'absolute',
-    paddingHorizontal:20,
-    paddingVertical:10, 
-    justifyContent:'center',   
+    paddingHorizontal: 10,
+    paddingVertical: 10,
     alignItems: 'center',
-    backgroundColor:'#fff',
-    elevation:20,
+    backgroundColor: '#fff',
+    elevation: 20,
+    borderRadius:10,
+    marginHorizontal:10
   },
   tryAgainButton: {
     padding: 10,
   },
+  winnerImg:{
+    height:50,
+    width:50
+  },
   winnerText: {
-    fontSize: 17,
-    textTransform:'uppercase'
+    fontSize: 25,
+    textTransform: 'uppercase',
+    marginHorizontal:20
   },
   tryAgainButton: {
     padding: 5,
