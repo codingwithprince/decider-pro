@@ -19,7 +19,9 @@ export default function App() {
           options={{ title: 'Participants',
         headerStyle:{
           // backgroundColor:'#ff3939'
-          backgroundColor:'#E9003E',
+          // backgroundColor:'#E9003E',
+          backgroundColor:"#00AAE2"
+          // backgroundColor:'#0086F5'
         },
         headerTintColor: '#fff',
           headerTitleStyle: {
@@ -30,7 +32,7 @@ export default function App() {
         <Stack.Screen name="Spinner" component={Spinner} 
         options={{ title: 'Get Winner',
         headerStyle:{
-          backgroundColor:'#E9003E',
+          backgroundColor:'#00AAE2',
         },
         headerTintColor: '#fff',
           headerTitleStyle: {
