@@ -16,7 +16,7 @@ export default function App() {
         <Stack.Screen
           name="Home"
           component={Home}
-          options={{ title: 'Decider Pro'}}
+          options={{ title: 'Get Winner'}}
         />
         <Stack.Screen name="Spinner" component={Spinner} />
       </Stack.Navigator>

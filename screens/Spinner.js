@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, Text, View, TouchableOpacity, TextInput, Image } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, View, TouchableOpacity, TextInput, Image, ImageBackground } from 'react-native';
 import WheelOfFortune from 'react-native-wheel-of-fortune';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -60,16 +60,22 @@ export default function Spinner({ navigation, route }) {
       )}
 
       {/* === showing results === */}
-     
-        {winnerIndex != null && (
-          <View style={styles.winnerView}>
-            <Image style={[styles.winnerImg, {height:50, marginBottom:10}]} source={require('../assets/cel.gif') } />
-           {/* <Text style={{fontSize:15, textTransform:'uppercase'}}>Results</Text> */}
-            <Text style={styles.winnerText}>{participants[winnerIndex]}</Text>
-            <Image style={styles.winnerImg} source={require('../assets/winner.gif') } />
+
+      {winnerIndex != null && (
+        <View style={styles.winnerView}>
+          <ImageBackground source={require('../assets/party-confetti.gif')} style={{width:'100%', height:'100%', alignItems:'center', justifyContent:'center'}}>
+            <View style={{backgroundColor:'#fff', alignItems:'center', borderRadius:7}}>
+              <View style={{ flexDirection: 'row' }}>
+                <Image style={[styles.winnerImg, { marginBottom: 10, paddingBottom: 10 }]} source={require('../assets/cel.gif')} />
+                <Text style={{ fontSize: 15, textTransform: 'uppercase', marginTop: 7 }}>winner</Text>
+                <Image style={[styles.winnerImg, { marginBottom: 10, paddingBottom: 10 }]} source={require('../assets/cel.gif')} />
+              </View>
+              <Text style={styles.winnerText}>{participants[winnerIndex]}</Text>
+          </View>
+          </ImageBackground>
         </View>
-        )}
-      
+      )}
+
 
       {/* ======== Try Again ========== */}
       {winnerIndex != null && (
@@ -99,8 +105,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    alignItems:'center',
-    justifyContent:'center'
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#E3E3E3'
   },
   wheelContainer: {
     width: '100%',
@@ -128,28 +135,31 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   winnerView: {
-    height:70,
-    flexDirection:'row',
+    height: 150,
+    width: '70%',
+    flexDirection: 'column',
+    justifyContent: 'space-around',
     position: 'absolute',
     paddingHorizontal: 10,
-    paddingVertical: 10,
     alignItems: 'center',
     backgroundColor: '#fff',
     elevation: 20,
-    borderRadius:10,
-    marginHorizontal:10
+    borderRadius: 10,
+    marginHorizontal: 10
   },
   tryAgainButton: {
     padding: 10,
   },
-  winnerImg:{
-    height:50,
-    width:50
+  winnerImg: {
+    height: 30,
+    width: 30,
+    marginHorizontal: 20
   },
   winnerText: {
-    fontSize: 25,
+    fontSize: 40,
+    fontWeight: 'bold',
     textTransform: 'uppercase',
-    marginHorizontal:20
+    marginHorizontal: 20
   },
   tryAgainButton: {
     padding: 5,
