@@ -3,14 +3,43 @@ import { SafeAreaView, StyleSheet, Text, View, TouchableOpacity, TextInput, Imag
 import WheelOfFortune from 'react-native-wheel-of-fortune';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+import {
+  AdMobBanner,
+  AdMobInterstitial
+} from 'expo-ads-admob';
+
 export default function Spinner({ navigation, route }) {
   const [child, setChild] = React.useState(null);
   const [winnerValue, setWinnerValue] = React.useState(null);
   const [winnerIndex, setWinnerIndex] = React.useState(null);
   const [started, setStarted] = React.useState(false);
-
   const participants = route.params.name;
 
+// this is admob
+  // const bannerID = "ca-app-pub-5240090040309390/8358015989";
+  // const intAdID = "ca-app-pub-5240090040309390/2722545929"; 
+ 
+// this is test
+  const bannerID = "ca-app-pub-3940256099942544/6300978111";
+  const intAdID = "ca-app-pub-3940256099942544/1033173712";
+
+  // interstitial ad
+  const interstitial = async () => {
+    await AdMobInterstitial.setAdUnitID(intAdID);
+    try {
+      await AdMobInterstitial.requestAdAsync();
+      await AdMobInterstitial.showAdAsync();
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  React.useEffect(()=>{
+    if(started == false){
+      interstitial();
+    }
+  },[])
+  
   const buttonPress = () => {
     setStarted(true);
     child._onPress();
@@ -40,6 +69,7 @@ export default function Spinner({ navigation, route }) {
 
   return (
     <View style={styles.container}>
+       
 
       <WheelOfFortune
         options={wheelOptions}
@@ -48,6 +78,14 @@ export default function Spinner({ navigation, route }) {
           setWinnerIndex(index)
         }}
       />
+
+ {/* =========== H O M E   A D M O B ========== */}
+           <AdMobBanner
+              style={{ position:'absolute', top:0}}
+              bannerSize="fullBanner"
+              adUnitID={bannerID}
+            />
+
 
       {/* === Checking Started Or Not === */}
       {!started && (
@@ -63,7 +101,7 @@ export default function Spinner({ navigation, route }) {
 
       {winnerIndex != null && (
         <View style={styles.winnerView}>
-          <ImageBackground source={require('../assets/party-confetti.gif')} style={{width:'100%', height:'100%', alignItems:'center', justifyContent:'center'}}>
+          <ImageBackground source={require('../assets/party.gif')} style={{width:'100%', height:'100%', alignItems:'center', justifyContent:'center'}}>
             <View style={{backgroundColor:'#fff', alignItems:'center', borderRadius:7}}>
               <View style={{ flexDirection: 'row' }}>
                 <Image style={[styles.winnerImg, { marginBottom: 10, paddingBottom: 10 }]} source={require('../assets/cel.gif')} />
@@ -128,7 +166,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#0086F5',
     padding: 7,
     paddingHorizontal: 15,
-    borderRadius: 5
+    borderRadius: 5,
+    marginBottom:10
   },
   startButtonText: {
     fontSize: 50,

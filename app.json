@@ -22,15 +22,22 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#FFFFFF"
       },
       "versionCode": 1,
-      "package": "com.codingwithprince.getwinner"
+      "package": "com.codingwithprince.getwinner",
+      "config": {
+
+         "googleMobileAdsAppId": "ca-app-pub-3940256099942544~3347511713"
+       
+      }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/icon.png"
     },
-    "description": ""
+    "description": "Get Winner Among Us"
   }
 }
+
+ 
