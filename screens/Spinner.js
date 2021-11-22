@@ -16,12 +16,12 @@ export default function Spinner({ navigation, route }) {
   const participants = route.params.name;
 
 // this is admob
-  // const bannerID = "ca-app-pub-5240090040309390/8358015989";
-  // const intAdID = "ca-app-pub-5240090040309390/2722545929"; 
+  const bannerID = "ca-app-pub-5240090040309390/8358015989";
+  const intAdID = "ca-app-pub-5240090040309390/2722545929"; 
  
 // this is test
-  const bannerID = "ca-app-pub-3940256099942544/6300978111";
-  const intAdID = "ca-app-pub-3940256099942544/1033173712";
+  // const bannerID = "ca-app-pub-3940256099942544/6300978111";
+  // const intAdID = "ca-app-pub-3940256099942544/1033173712";
 
   // interstitial ad
   const interstitial = async () => {

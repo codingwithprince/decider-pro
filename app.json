@@ -28,13 +28,11 @@
       "versionCode": 1,
       "package": "com.codingwithprince.getwinner",
       "config": {
-
-         "googleMobileAdsAppId": "ca-app-pub-3940256099942544~3347511713"
-       
+        "googleMobileAdsAppId": "ca-app-pub-5240090040309390~1450020374"
       }
     },
     "web": {
-      "favicon": "./assets/icon.png"
+      "favicon": "./assets/favicon.png"
     },
     "description": "Get Winner Among Us"
   }

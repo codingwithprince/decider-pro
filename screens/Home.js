@@ -17,12 +17,12 @@ const Home = ({ navigation }) => {
   const [participants, setParticipants] = React.useState([])
 
   // this is admob
-  // const bannerID = "ca-app-pub-5240090040309390/2571530356"; 
-  // const intAdID = "ca-app-pub-5240090040309390/2914117615"; 
+  const bannerID = "ca-app-pub-5240090040309390/2571530356"; 
+  const intAdID = "ca-app-pub-5240090040309390/2914117615"; 
 
   // this is test
-  const bannerID = "ca-app-pub-3940256099942544/6300978111";
-  const intAdID = "ca-app-pub-3940256099942544/1033173712";
+  // const bannerID = "ca-app-pub-3940256099942544/6300978111";
+  // const intAdID = "ca-app-pub-3940256099942544/1033173712";
 
   // interstitial ad
   const interstitial = async () => {
